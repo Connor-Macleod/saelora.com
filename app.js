@@ -9,9 +9,6 @@ var sassMiddleware = require('node-sass-middleware');
 var fs = require("fs");
 var _ = require("lodash");
 
-var www = require('./routes/www');
-var enchanting = require('./routes/enchanting');
-
 var app = express();
 
 
@@ -33,12 +30,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(subdomain('www', www));
-app.use(subdomain('enchanting', enchanting));
-app.use('/', www);
-
-
-var routes = fs.readdirSync("../routes");
+var routes = fs.readdirSync("./routes");
 
 _.each(routes, function(route){
     var routeObj = require('./routes/'+route);
