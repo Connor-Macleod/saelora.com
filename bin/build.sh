@@ -2,7 +2,9 @@
 
 systemctl stop saelora.com
 
-rm -r node_modules
+git reset
+git checkout .
+git clean -fdx
 
 npm install
 
