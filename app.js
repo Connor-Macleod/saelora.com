@@ -6,11 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var subdomain = require('express-subdomain');
 var sassMiddleware = require('node-sass-middleware');
+var fs = require("fs");
+var _ = require("lodash");
 
 var www = require('./routes/www');
 var enchanting = require('./routes/enchanting');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +36,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(subdomain('www', www));
 app.use(subdomain('enchanting', enchanting));
 app.use('/', www);
+
+
+var routes = fs.readdirSync("../routes");
+
+_.each(routes, function(route){
+    var routeObj = require('./routes/'+route);
+    app.use(subdomain('route', routeObj));
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
