@@ -30,8 +30,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-var routes = fs.readdirSync("./routes");
-
+//var routes = fs.readdirSync("./routes");
+var routes = ["enchanting", "www"];
 _.each(routes, function(route){
     console.log("setting up routes for route: " + route);
     var routeObj = require('./routes/'+route);
