@@ -2,14 +2,14 @@
 Description=saelora.com
 
 [Service]
-ExecStart=/jwww/saelora.com/bin/www
+ExecStart=node /jwww/saelora.com/bin/www
 Restart=always
 User=root
 # Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
 Group=root
 Environment=PATH=/root/.nvm/versions/node/v4.3.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 Environment=NODE_ENV=production
-WorkingDirectory=/jwww/saelora.com
+WorkingDirectory=/jwww/saelora.com/
 
 [Install]
 WantedBy=multi-user.target
