@@ -39,6 +39,7 @@ www.all(
     
         post_req.on('error', function(e)  {
             console.error('problem with request: ', e.message);
+            res.status(500).send(e.message);
         });
         post_req.write(querystringforbody);
         post_req.end();
