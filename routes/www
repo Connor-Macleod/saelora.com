@@ -7,4 +7,26 @@ www.get('/', function(req, res, next) {
   res.render('coming-soon', { title: 'www - Coming Soon' });
 });
 
+www.all(
+    "/webhook",
+    function (req, res) {
+        console.log("recieved message");
+        var url  = "https://discordapp.com/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw";
+        var json = {
+            content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
+            username: "Robot: " + req.query.robotname
+        };
+        console.log("passing message on");
+        request({
+            url:  url,
+            form: json
+        }, function(err, response, body){
+            console.log(err);
+            console.log(body);
+            return res.send("message managed")
+        });
+    }
+);
+
+
 module.exports = www;
