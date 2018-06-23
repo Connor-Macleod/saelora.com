@@ -18,7 +18,7 @@ www.all(
             content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
             username: "Robot: " + req.query.name
         };
-        var querystringforbody = querystring.stringify(json);
+        var querystringforbody = JSON.stringify(json);
         var requestOptions= {
             hostname: "discordapp.com",
             port: 443,
