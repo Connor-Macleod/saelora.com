@@ -28,8 +28,10 @@ var routes = fs.readdirSync("./routes");
 _.each(routes, function(route){
     console.log("setting up routes for route: " + route);
     var routeObj = require('./routes/'+route);
-    app.use(subdomain('route', routeObj));
+    app.use(subdomain(route, routeObj));
 });
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
