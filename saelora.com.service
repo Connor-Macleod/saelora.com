@@ -2,7 +2,7 @@
 Description=saelora.com
 
 [Service]
-ExecStart=node /jwww/saelora.com/bin/www
+ExecStart=/root/.nvm/versions/node/v4.3.2/bin/node /jwww/saelora.com/bin/www
 Restart=always
 User=root
 # Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
