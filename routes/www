@@ -17,13 +17,15 @@ www.all(
             content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
             username: "Robot: " + req.query.robotname
         };
-        console.log("passing message on");
-        request({
+        var requestOptions= {
             url:  url,
-            body: json,
-            json:true
-        }, function(err, response, body){
+                body: json,
+                json:true
+        };
+        console.log("passing message on: ", requestOptions);
+        request(requestOptions, function(err, response, body){
             console.log(err);
+            console.log(response);
             console.log(body);
             return res.send("message managed")
         });
