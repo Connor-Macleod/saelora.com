@@ -30,8 +30,10 @@ www.all(
             }
         };
         var post_req = http.request(requestOptions, function(response) {
-            console.log(response);
-            return res.send("message managed")
+            response.on('data', function (chunk) {
+                console.log('Response: ' + chunk);
+                return res.send("message managed")
+            });
         });
     
         post_req.on('error', function(e)  {
