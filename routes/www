@@ -1,5 +1,5 @@
 var express = require('express');
-var http = require('http');
+var https = require('https');
 var querystring = require('querystring');
 var www = express.Router();
 
@@ -18,10 +18,10 @@ www.all(
             content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
             username: "Robot: " + req.query.name
         };
-        var querystringforbody = querystring.stringify(json)
+        var querystringforbody = querystring.stringify(json);
         var requestOptions= {
             hostname: "discordapp.com",
-            port: 80,
+            port: 443,
             path: "/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw",
             method: "POST",
             headers: {
@@ -29,7 +29,7 @@ www.all(
                 'Content-Length': querystringforbody.length
             }
         };
-        var post_req = http.request(requestOptions, function(response) {
+        var post_req = https.request(requestOptions, function(response) {
             response.on('data', function (chunk) {
                 console.log('Response: ' + chunk);
                 return res.send("message managed")
