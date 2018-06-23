@@ -1,5 +1,6 @@
 var express = require('express');
-var request = require('request');
+var https = require('https');
+var querystring = require('querystring');
 var www = express.Router();
 
 /* GET home page. */
@@ -15,23 +16,31 @@ www.all(
         var url  = "https://discordapp.com/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw";
         var json = {
             content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
-            username: "Robot: " + req.query.robotname
+            username: "Robot: " + req.query.name
         };
+        var querystringforbody = querystring.stringify(json)
         var requestOptions= {
-            url:  url,
-            body: json,
-            json:true,
+            hostname: "discordapp.com",
+            port: 80,
+            path: "/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw",
+            method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Content-Length': Buffer.byteLength(querystringforbody)
             }
         };
-        console.log("passing message on: ", requestOptions);
-        request(requestOptions, function(err, response, body){
-            console.log(err);
+        var post_req = http.request(requestOptions, function(response) {
             console.log(response);
-            console.log(body);
             return res.send("message managed")
         });
+    
+        post_req.on('error', function(e)  {
+            console.error('problem with request: ', e.message);
+        });
+        post_req.write(post_data);
+        post_req.end();
+        
+        console.log("passing message on: ", requestOptions);
     }
 );
 
