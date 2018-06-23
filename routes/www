@@ -37,7 +37,7 @@ www.all(
         post_req.on('error', function(e)  {
             console.error('problem with request: ', e.message);
         });
-        post_req.write(post_data);
+        post_req.write(querystringforbody);
         post_req.end();
         
         console.log("passing message on: ", requestOptions);
