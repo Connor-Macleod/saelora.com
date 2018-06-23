@@ -12,10 +12,10 @@ www.all(
     "/webhook",
     function (req, res) {
         console.log("recieved message");
-        var url  = "https://discordapp.com/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw";
+        var url  = "https://discordapp.com/api/webhooks/459889615550152705/U_RG_4r8FyBacP0l0VMRcb0i7co1ot0NPzeQOpz0JSNLbVcflJMa4sYUUrAgGwfSbmyw/slack";
         var json = {
-            content:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
-            username: "Robot: " + req.query.robotname
+            text:  "Help! Robot down with no power at co-ordinates: " + req.query.coordinates,
+            title: "Robot: " + req.query.robotname
         };
         var requestOptions= {
             url:  url,
